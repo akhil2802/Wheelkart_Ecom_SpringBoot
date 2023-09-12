@@ -36,13 +36,9 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 
         // Disable http methods for Entities:
         disableHttpMethods(Product.class, config, theUnsupportedActions);
-
         disableHttpMethods(ProductCategory.class, config, theUnsupportedActions);
-
         disableHttpMethods(Country.class, config, theUnsupportedActions);
-
         disableHttpMethods(State.class, config, theUnsupportedActions);
-        
         disableHttpMethods(Order.class, config, theUnsupportedActions);
 
 //        Call an internal helper method:

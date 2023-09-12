@@ -16,11 +16,10 @@ public class SecurityConfiguration {
 
         // protect endpoint /api/orders
         http
-                // disable CSRF since we are not using Cookies for session tracking
-                .csrf().disable()
                 .authorizeHttpRequests(configurer ->
                         configurer
-                                .requestMatchers("/api/orders/**")
+                                .requestMatchers("/api/orders/**").permitAll()
+                                .requestMatchers("/actuator/**")
                                 .authenticated())
                 .oauth2ResourceServer()
                 .jwt();
@@ -34,6 +33,9 @@ public class SecurityConfiguration {
 
         // force a non-empty response body for 401's to make the response more friendly
         Okta.configureResourceServer401ResponseBody(http);
+
+        // disable CSRF since we are not using Cookies for session tracking
+        http.csrf().disable();
 
         return http.build();
     }
